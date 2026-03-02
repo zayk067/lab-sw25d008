@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="name" placeholder="neree bichne uu"/>
+    <input type="text" id="ovog" placeholder="ovogoo bichne uu"/>   
+    <button id="btn">hadgalah</button>
+    <div id="show"style="background-color: yellow; padding:10px; border:1px solid"></div>
+    <script>
+        let ner=document.getElementById("name");
+        let ovog=document.getElementById("ovog");
+        let btn=document.getElementById("btn");
+        let saveArray=JSON.parse(localStorage.getItem("saveArray"))||[];
+        function storage(){
+            let data={
+                name: ner.value,
+                ovog: ovog.value
+            }
+            saveArray.push(data);
+            localStorage.setItem("saveArray", JSON.stringify(saveArray));
+            divHaruulah();
+            ner.value="";
+            ovog.value=""
+        }
+        localStorage.setItem("saveArray", JSON.stringify(saveArray));
+        btn.addEventListener("click", storage); 
+        console.log(saveArray); 
+
+        function divHaruulah(){
+            show.innerHTML="";
+            saveArray.forEach(item => {
+        let div = document.createElement("div");
+        div.textContent = item.name + " " + item.ovog;
+        show.appendChild(div);
+
+            })
+        }
+
+        
+        
+    </script>
+</body>
+</html>
